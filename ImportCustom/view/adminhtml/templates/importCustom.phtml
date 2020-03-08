@@ -1,0 +1,48 @@
+<?php
+
+/** @var $block \Expertime\ImportCustom\Block\Adminhtml\ImportCustom\Customer */
+?>
+
+<div class="import-custom-customer">
+    <?php if ($block->getUseContainer()) :?>
+    <form id="import-custom-customer-form"
+          class="admin__fieldset"
+          action="<?= $block->escapeUrl($block->getUrl('import/importcustom/customerpost')) ?>"
+          method="post"
+          enctype="multipart/form-data">
+        <?= $block->getBlockHtml('formkey') ?>
+        <div class="fieldset admin__field">
+            <label for="import_rates_file" class="admin__field-label"><span><?= $block->escapeHtml(__('Import Custom Customer')) ?></span></label>
+            <div class="admin__field-text">
+                <input type="text"
+                       id="import-custom-customer-input"
+                       name="import-custom-customer-input"
+                       class="admin__control-text required-entry"/>
+                <?= $block->getButtonHtml(__('Submit Import Customer by Url'), '', 'import-custom-customer-submit') ?>
+            </div>
+        </div>
+    </form>
+<?php endif; ?>
+    <script>
+        require(['jquery', 'Magento_Ui/js/modal/alert', "mage/mage", "loadingPopup", 'mage/translate'], function(jQuery, uiAlert){
+
+            jQuery('#import-custom-customer-form').mage('form').mage('validation');
+            (function ($) {
+                $('.import-custom-customer-submit').click(function(){
+                    if($(':input[name="import-custom-customer-input"]').val()) {
+                        $('body').loadingPopup({
+                            timeout: false
+                        });
+
+                        $(this.form).submit();
+                    } else {
+                        uiAlert({
+                            content: $.mage.__('Please give a url!')
+                        });
+                    }
+                });
+            })(jQuery);
+
+        });
+    </script>
+</div>

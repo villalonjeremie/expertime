@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Expertime_ImportCustom::import_custom_customer" title="Import Customer by URL" sortOrder="30" module="Expertime_ImportCustom" parent="Magento_Backend::system_convert" action="import/importcustom/customer" resource="Expertime_ImportCustom::import_custom_customer"/>
+    </menu>
+</config>
+
